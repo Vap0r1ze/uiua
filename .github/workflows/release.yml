@@ -60,6 +60,8 @@ jobs:
         run: rustup target add ${{ matrix.target }}
       - name: Build
         run: cargo build --bin uiua --features audio --release --target ${{ matrix.target }} --verbose
+        env:
+          PKG_CONFIG_SYSROOT_DIR: /
 
       - name: Zip
         run: 7z a -tzip uiua-bin-${{matrix.target}}.zip ./target/${{matrix.target}}/release/uiua${{env.BINARY_EXT}}
